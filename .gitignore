@@ -1,0 +1,7 @@
+# Variaveis de ambiente e senhas
+.env
+vendor/
+.idea/
+.vscode/
+.phpunit.cache/
+*.log
