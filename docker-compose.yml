@@ -12,5 +12,21 @@ services:
     volumes:
       - mysql8_data:/var/lib/mysql
 
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_php
+    working_dir: /var/www/html
+    environment:
+      DB_DATABASE: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_HOST: mysql
+    volumes:
+      - .:/var/www/html
+    tty: true
+    stdin_open: true
+
 volumes:
   mysql8_data:
