@@ -26,23 +26,28 @@ final class MoneyTest extends TestCase {
         $primeiro_valor->somar(700);
     }
 
-    public function test_subtrair_valores(): void{
+    public function test_subtrair_valores(): void {
         $valor1 = new Money(300);
         $valor2 = new Money(200);
         $resultado = $valor1->subtrair($valor2);
         $this->assertSame(100, $resultado->centavos);
     }
 
-    public function test_subtrair_resultado_negativo(): void{
+    public function test_subtrair_resultado_negativo(): void {
         $primeiroValor = new Money(300);
         $this->expectException(ValorNegativoException::class);
         $primeiroValor->subtrair(new Money(1000));
     }
 
-    public function test_subtrair_resultado_zero(): void{
+    public function test_subtrair_resultado_zero(): void {
         $primeiroValor = new Money(300);
         $segundoValor = new Money(300);
         $resultado = $primeiroValor->subtrair($segundoValor);
         $this->assertSame(0, $resultado->centavos);
+    }
+
+    public function test_construtor_valor_negativo(): void {
+        $this->expectException(ValorNegativoException::class);
+        new Money(-5);
     }
 }
