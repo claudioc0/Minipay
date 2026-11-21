@@ -64,4 +64,25 @@ final class MoneyTest extends TestCase {
         $resultado = $primeiroValorDiferente->igualA($segundoValorDiferente);
         $this->assertFalse($resultado);
     }
+
+    public function test_maior_que_valor_maior(): void {
+        $valorMaior = new Money(650);
+        $valorMenor = new Money(370);
+        $resultado = $valorMaior->maiorQue($valorMenor);
+        $this->assertTrue($resultado);
+    }
+
+    public function test_maior_que_valor_menor(): void {
+        $valorMenor = new Money(650);
+        $valorMaior = new Money(780);
+        $resultado = $valorMenor->maiorQue($valorMaior);
+        $this->assertFalse($resultado);
+    }
+
+    public function test_maior_que_valor_igual(): void {
+        $primeiroValor = new Money(650);
+        $segundoValor = new Money(650);
+        $resultado = $primeiroValor->maiorQue($segundoValor);
+        $this->assertFalse($resultado);
+    }
 }

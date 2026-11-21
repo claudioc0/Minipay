@@ -26,5 +26,9 @@ final class Money {
     public function igualA(Money $outroValor): bool {
         return $this->centavos === $outroValor->centavos;
     }
+
+    public function maiorQue(Money $outroValor): bool {
+        return $this->centavos > $outroValor->centavos;
+    }
 }
 
