@@ -22,5 +22,9 @@ final class Money {
 
         return new self($resultado);
     }
+
+    public function igualA(Money $outroValor): bool {
+        return $this->centavos === $outroValor->centavos;
+    }
 }
 

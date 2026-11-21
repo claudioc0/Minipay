@@ -50,4 +50,18 @@ final class MoneyTest extends TestCase {
         $this->expectException(ValorNegativoException::class);
         new Money(-5);
     }
+
+    public function test_igual_a_valores_iguais(): void {
+        $primeiroValorIgual = new Money(300);
+        $segundoValorIgual = new Money(300);
+        $resultado = $primeiroValorIgual->igualA($segundoValorIgual);
+        $this->assertTrue($resultado);
+    }
+
+    public function test_igual_a_valores_diferentes(): void {
+        $primeiroValorDiferente = new Money(200);
+        $segundoValorDiferente = new Money(1000);
+        $resultado = $primeiroValorDiferente->igualA($segundoValorDiferente);
+        $this->assertFalse($resultado);
+    }
 }
