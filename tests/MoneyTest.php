@@ -6,6 +6,7 @@ namespace MiniPay\Tests;
 use PHPUnit\Framework\TestCase;
 use MiniPay\Money;
 use MiniPay\Exceptions\ValorNegativoException;
+use TypeError;
 
 final class MoneyTest extends TestCase {
     public function test_guarda_valor_centavos(): void {
@@ -84,5 +85,20 @@ final class MoneyTest extends TestCase {
         $segundoValor = new Money(650);
         $resultado = $primeiroValor->maiorQue($segundoValor);
         $this->assertFalse($resultado);
+    }
+
+    public function test_somar_valores_lista(): void {
+        $resultado = Money::somarValores([new Money(100), new Money(250), new Money(50)])->centavos;
+        $this->assertSame(400, $resultado);
+    }
+
+    public function test_somar_valores_lista_vazia(): void {
+        $resultado = Money::somarValores([])->centavos;
+        $this->assertSame(0, $resultado);
+    }
+
+    public function test_somar_valores_lista_nao_money(): void {
+        $this->expectException(TypeError::class);
+        Money::somarValores([100, 250, 50]);
     }
 }

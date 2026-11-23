@@ -30,5 +30,9 @@ final class Money {
     public function maiorQue(Money $outroValor): bool {
         return $this->centavos > $outroValor->centavos;
     }
+
+    public static function somarValores(array $valores): Money {
+        return array_reduce($valores, fn(self $acumulador, self $atual): self => $acumulador->somar($atual), new Money(0));
+    }
 }
 
